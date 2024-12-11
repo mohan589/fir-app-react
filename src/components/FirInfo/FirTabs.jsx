@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Tabs, Button, Table, Card } from "antd";
 import CreateTemplate from "./CreateTemplate";
 import CreateTemplateType from "./CreateTemplateType";

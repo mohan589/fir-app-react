@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Layout } from 'antd';
-import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
+import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined, CrownOutlined } from '@ant-design/icons';
 import { useLocation, Link } from 'react-router-dom';
 
 function getItem(label, key, icon, children) {
@@ -33,6 +33,20 @@ const items = [
   getItem('Team', 'sub2', <TeamOutlined />, [
     getItem('Team 1', '/team/team1'),
     getItem('Team 2', '/team/team2'),
+  ]),
+  getItem('Admin Codes', 'AdminCodes', <CrownOutlined />, [
+    getItem(
+      <Link to="/districts">Districts</Link>,
+      '/districts',
+      <PieChartOutlined />
+    ),
+    getItem(
+      <Link to="/stations">Stations</Link>,
+      '/stations',
+      <PieChartOutlined />
+    ),
+    getItem('Bill', '/user/bill'),
+    getItem('Alex', '/user/alex'),
   ]),
   getItem(
     <Link to="/dashboard">Dashboard</Link>,
