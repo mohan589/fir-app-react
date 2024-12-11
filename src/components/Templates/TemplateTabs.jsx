@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Button, Table } from "antd";
+import { Tabs, Button, Table, Card } from "antd";
 import CreateTemplate from "./CreateTemplate";
 import CreateTemplateType from "./CreateTemplateType";
 
@@ -53,21 +53,45 @@ const onChange = (key) => {
 };
 
 const TabContent = ({ tabKey }) => {
-  const isTemplatesTab = tabKey === "Templates";
-  return (
-    <div>
-      {isTemplatesTab && (
+  if (tabKey === "Templates") {
+    return (
+      <Card
+        title="Templates List"
+        bordered={true}
+        style={{ marginTop: 16 }}
+      >
         <Table
           columns={columns}
           dataSource={data}
           onChange={onChange}
           pagination={{ pageSize: 5 }}
         />
-      )}
-      {tabKey === "New Template" && <CreateTemplate />}
-      {tabKey === "CreateTemplateType" && <CreateTemplateType />}
-    </div>
-  );
+      </Card>
+    );
+  }
+  if (tabKey === "New Template") {
+    return (
+      <Card
+        title="Create New Template"
+        bordered={true}
+        style={{ marginTop: 16 }}
+      >
+        <CreateTemplate />
+      </Card>
+    );
+  }
+  if (tabKey === "CreateTemplateType") {
+    return (
+      <Card
+        title="Create Template Type"
+        bordered={true}
+        style={{ marginTop: 16 }}
+      >
+        <CreateTemplateType />
+      </Card>
+    );
+  }
+  return null;
 };
 
 const TemplateTabs = () => {
@@ -78,7 +102,7 @@ const TemplateTabs = () => {
       children: <TabContent tabKey="Templates" />,
     },
     {
-      key: "CreateTemplate",
+      key: "New Template",
       label: "Create Template",
       children: <TabContent tabKey="New Template" />,
     },

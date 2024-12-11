@@ -1,10 +1,10 @@
 import React from 'react';
+import FirComponent from './FirInfo/FirComponent';
 
 const FirInfo = () => {
   return (
     <div>
-      <h1>Fir</h1>
-      <p>This is the Fir page.</p>
+      <FirComponent/>
     </div>
   );
 };

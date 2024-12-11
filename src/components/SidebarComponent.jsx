@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, Layout } from 'antd';
 import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
+import { useLocation, Link } from 'react-router-dom';
 
 function getItem(label, key, icon, children) {
   return {
@@ -11,33 +12,47 @@ function getItem(label, key, icon, children) {
   };
 }
 
-const {  Sider } = Layout;
+const { Sider } = Layout;
 
 const items = [
-  getItem((
-    <a href="/templates" rel="noopener noreferrer">
-      Templates
-    </a>
-  ), '1', <PieChartOutlined />),
-  getItem(<a href="/firinfo" rel="noopener noreferrer">
-    FirInfo
-  </a>, '2', <DesktopOutlined />),
+  getItem(
+    <Link to="/templates">Templates</Link>,
+    '/templates',
+    <PieChartOutlined />
+  ),
+  getItem(
+    <Link to="/firinfo">FirInfo</Link>,
+    '/firinfo',
+    <DesktopOutlined />
+  ),
   getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+    getItem('Tom', '/user/tom'),
+    getItem('Bill', '/user/bill'),
+    getItem('Alex', '/user/alex'),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem(<a href="/dashboard" rel="noopener noreferrer">
-    Dashboard
-  </a>, '9', <FileOutlined />),
+  getItem('Team', 'sub2', <TeamOutlined />, [
+    getItem('Team 1', '/team/team1'),
+    getItem('Team 2', '/team/team2'),
+  ]),
+  getItem(
+    <Link to="/dashboard">Dashboard</Link>,
+    '/dashboard',
+    <FileOutlined />
+  ),
 ];
 
 const SidebarComponent = ({ collapsed, onCollapse }) => {
+  const location = useLocation();
+
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <div className="demo-logo-vertical" />
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+      <Menu
+        theme="dark"
+        mode="inline"
+        selectedKeys={[location.pathname]} // Dynamically set the selected key
+        items={items}
+      />
     </Sider>
   );
 };
