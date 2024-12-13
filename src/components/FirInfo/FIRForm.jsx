@@ -2,16 +2,18 @@ import React from "react";
 import { Form, Input, Select, Button, DatePicker, Row, Col } from "antd";
 import PhysicalFeaturesTable from "./PhysicalFeaturesTable";
 
-const FIRForm = () => {
+const FIRForm = ({innerRef}) => {
+  
+  console.log(innerRef, 'innerRef')
   const { Option } = Select;
-
   const handleFinish = (values) => {
     console.log("Form Values:", values);
   };
 
   return (
-    <Form
+    (innerRef) ? (<Form
       layout="vertical"
+      ref={innerRef}
       onFinish={handleFinish}
       style={{ maxWidth: "1200px", margin: "auto" }}
     >
@@ -425,7 +427,7 @@ const FIRForm = () => {
           Submit FIR
         </Button>
       </Form.Item>
-    </Form>
+    </Form>) : null
   );
 };
 

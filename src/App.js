@@ -8,6 +8,7 @@ import SidebarComponent from './components/SidebarComponent';
 import FooterSection from './components/FooterSection';
 import RouterComponent from './RouterComponent';
 import ErrorBoundary from './components/ErrorBoundary';
+import UserProfile from './components/UserProfile';
 
 const { Header, Content } = Layout;
 
@@ -25,6 +26,7 @@ const App = () => {
           <Layout>
             <Header style={{ padding: 0, background: colorBgContainer }} />
             <Content style={{ margin: '0 16px' }}>
+              <UserProfile/>
               <RouterComponent/>
             </Content>
             <FooterSection />

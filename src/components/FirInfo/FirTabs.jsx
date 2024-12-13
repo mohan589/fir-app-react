@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Tabs, Button, Table, Card } from "antd";
 import FIRModelPopup from "./FIRModelPopup";
 import FIRWorkflowComponent from "./FIRWorkflowComponent";
 import FIRForm from "./FIRForm";
+import { useReactToPrint } from "react-to-print";
 
 const columns = [
   {
@@ -56,6 +57,8 @@ const onChange = (key) => {
 const TabContent = ({ tabKey }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ workFlowData, setWorkFlowData ] = useState([])
+  const contentRef = useRef(null);
+  const handlePrint = useReactToPrint({ contentRef });
 
   if (tabKey === "All FIRs") {
     return (
@@ -84,12 +87,13 @@ const TabContent = ({ tabKey }) => {
         title="Add New FIR"
         bordered={true}
         style={{ marginTop: 16 }}
+        // extra=<Button onClick={handlePrint} type="primary">Print FIR</Button>
         bodyStyle={{
           maxHeight: '600px', // Set the max height as per your requirements
           overflowY: 'auto', // Enable vertical scrolling when content overflows
         }}
       >
-        <FIRForm />
+        <FIRForm innerRef={contentRef}/>
       </Card>
     );
   }

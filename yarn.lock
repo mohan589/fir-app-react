@@ -8602,6 +8602,11 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-to-print@^3.0.2:
+  version "3.0.2"
+  resolved "https://artifactory-ykt.ssnc-corp.cloud/artifactory/api/npm/il-npm-dev/react-to-print/-/react-to-print-3.0.2.tgz#3739392fe8d650e3e8a14662d16f16ad57dec050"
+  integrity sha512-FS/Z4LLq0bgWaxd7obygFQ8yRFdKW74iE8fIVjFFsPJWIXmuL8CIO+4me1Hj44lrlxQ00gscSNb3BRM8olbwXg==
+
 react@^18.2.0:
   version "18.3.1"
   resolved "https://artifactory-ykt.ssnc-corp.cloud/artifactory/api/npm/il-npm-dev/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
