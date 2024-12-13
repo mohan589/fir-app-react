@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Tabs, Button, Table, Card } from "antd";
-import FIRModelPopup from "./FIRModelPopup";
-import FIRWorkflowComponent from "./FIRWorkflowComponent";
-import FIRForm from "./FIRForm";
+import FIRModelPopup from "../FirInfo/FIRModelPopup";
+import FIRWorkflowComponent from "../FirInfo/FIRWorkflowComponent";
+import FIRForm from "../FirInfo/FIRForm";
 
 const columns = [
   {
@@ -92,7 +92,7 @@ const TabContent = ({ tabKey }) => {
   return null;
 };
 
-const FirTabs = () => {
+const AllNotice = () => {
   const tabItems = [
     {
       key: "All FIRs",
@@ -113,4 +113,4 @@ const FirTabs = () => {
   );
 };
 
-export default FirTabs;
+export default AllNotice;

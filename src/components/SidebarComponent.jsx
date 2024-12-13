@@ -48,6 +48,20 @@ const items = [
     getItem('Bill', '/user/bill'),
     getItem('Alex', '/user/alex'),
   ]),
+  getItem('Notice Section', 'NoticeSection', <CrownOutlined />, [
+    getItem(
+      <Link to="/allNotices">All Notices</Link>,
+      '/allNotices',
+      <PieChartOutlined />
+    ),
+    getItem(
+      <Link to="/xyz">xyz</Link>,
+      '/xyz',
+      <PieChartOutlined />
+    ),
+    getItem('Bill', '/user/bill'),
+    getItem('Alex', '/user/alex'),
+  ]),
   getItem(
     <Link to="/dashboard">Dashboard</Link>,
     '/dashboard',
