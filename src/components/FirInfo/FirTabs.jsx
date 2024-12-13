@@ -4,6 +4,7 @@ import CreateTemplate from "./CreateTemplate";
 import CreateTemplateType from "./CreateTemplateType";
 import FIRModelPopup from "./FIRModelPopup";
 import FIRWorkflowComponent from "./FIRWorkflowComponent";
+import FIRForm from "./FIRForm";
 
 const columns = [
   {
@@ -58,10 +59,10 @@ const TabContent = ({ tabKey }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ workFlowData, setWorkFlowData ] = useState([])
 
-  if (tabKey === "Templates") {
+  if (tabKey === "All FIRs") {
     return (
       <Card
-        title="All FIR's"
+        title="All FIRs"
         bordered={true}
         style={{ marginTop: 16 }}
         extra=<Button onClick={() => setIsModalOpen(true)} type="primary">Create FIR</Button>
@@ -79,25 +80,14 @@ const TabContent = ({ tabKey }) => {
       </Card>
     );
   }
-  if (tabKey === "New Template") {
+  if (tabKey === "New FIR") {
     return (
       <Card
-        title="Create New Template"
+        title="Add New FIR"
         bordered={true}
         style={{ marginTop: 16 }}
       >
-        <CreateTemplate />
-      </Card>
-    );
-  }
-  if (tabKey === "CreateTemplateType") {
-    return (
-      <Card
-        title="Create Template Type"
-        bordered={true}
-        style={{ marginTop: 16 }}
-      >
-        <CreateTemplateType />
+        <FIRForm />
       </Card>
     );
   }
@@ -107,20 +97,15 @@ const TabContent = ({ tabKey }) => {
 const FirTabs = () => {
   const tabItems = [
     {
-      key: "Templates",
-      label: "Templates",
-      children: <TabContent tabKey="Templates" />,
+      key: "All FIRs",
+      label: "All FIRs",
+      children: <TabContent tabKey="All FIRs" />,
     },
     {
-      key: "New Template",
-      label: "Create Template",
-      children: <TabContent tabKey="New Template" />,
-    },
-    {
-      key: "CreateTemplateType",
-      label: "Create Template Type",
-      children: <TabContent tabKey="CreateTemplateType" />,
-    },
+      key: "New FIR",
+      label: "New FIR",
+      children: <TabContent tabKey="New FIR" />,
+    }
   ];
 
   return (
