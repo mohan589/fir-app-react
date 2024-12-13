@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Input, Button, Popconfirm } from 'antd';
 
-const EditableTable = () => {
+const PhysicalFeaturesTable = () => {
   // State for the first table (Physical Features)
   const [physicalData, setPhysicalData] = useState([
     { key: '1', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
@@ -194,4 +194,4 @@ const EditableTable = () => {
   );
 };
 
-export default EditableTable;
+export default PhysicalFeaturesTable;
