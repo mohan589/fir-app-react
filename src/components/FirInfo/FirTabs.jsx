@@ -84,6 +84,10 @@ const TabContent = ({ tabKey }) => {
         title="Add New FIR"
         bordered={true}
         style={{ marginTop: 16 }}
+        bodyStyle={{
+          maxHeight: '600px', // Set the max height as per your requirements
+          overflowY: 'auto', // Enable vertical scrolling when content overflows
+        }}
       >
         <FIRForm />
       </Card>

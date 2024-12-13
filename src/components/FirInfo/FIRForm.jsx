@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Input, Select, Button, DatePicker, Row, Col } from "antd";
+import PhysicalFeaturesTable from "./PhysicalFeaturesTable";
 
 const FIRForm = () => {
   const { Option } = Select;
@@ -412,6 +413,9 @@ const FIRForm = () => {
           </>
         )}
       </Form.List>
+      <br />
+      <br />
+      <PhysicalFeaturesTable/>
       <br />
       <br />
       
