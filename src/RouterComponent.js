@@ -21,7 +21,6 @@ const RouterComponent = () => {
       <Route path="/allNotices" element={<AllNotices />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-    
   );
 }
 

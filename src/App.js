@@ -7,6 +7,7 @@ import './App.css';
 import SidebarComponent from './components/SidebarComponent';
 import FooterSection from './components/FooterSection';
 import RouterComponent from './RouterComponent';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const { Header, Content } = Layout;
 
@@ -18,16 +19,18 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Layout style={{ minHeight: '100vh' }}>
-        <SidebarComponent collapsed={collapsed} onCollapse={setCollapsed} />
-        <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }} />
-          <Content style={{ margin: '0 16px' }}>
-            <RouterComponent/>
-          </Content>
-          <FooterSection />
-        </Layout>
-      </Layout>
+      <ErrorBoundary>
+        <Layout style={{ minHeight: '100vh' }}>
+          <SidebarComponent collapsed={collapsed} onCollapse={setCollapsed} />
+          <Layout>
+            <Header style={{ padding: 0, background: colorBgContainer }} />
+            <Content style={{ margin: '0 16px' }}>
+              <RouterComponent/>
+            </Content>
+            <FooterSection />
+          </Layout>
+          </Layout>
+      </ErrorBoundary>
     </BrowserRouter>
   );
 };

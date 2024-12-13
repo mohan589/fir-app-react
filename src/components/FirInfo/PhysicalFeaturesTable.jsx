@@ -8,7 +8,7 @@ const PhysicalFeaturesTable = () => {
     { key: '2', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
     { key: '3', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
     { key: '4', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
-    { key: '5', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
+    { key: '5', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' }
   ]);
 
   // State for the second table (Deformities Peculiarities)
@@ -17,7 +17,7 @@ const PhysicalFeaturesTable = () => {
     { key: '2', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
     { key: '3', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
     { key: '4', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
-    { key: '5', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
+    { key: '5', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' }
   ]);
 
   // State for the third table (Place of Offense)
@@ -26,7 +26,7 @@ const PhysicalFeaturesTable = () => {
     { key: '2', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
     { key: '3', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
     { key: '4', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
-    { key: '5', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
+    { key: '5', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' }
   ]);
 
   // Handle save function for all tables
