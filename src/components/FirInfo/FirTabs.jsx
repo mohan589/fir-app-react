@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Tabs, Button, Table, Card } from "antd";
 import FIRModelPopup from "./FIRModelPopup";
 import FIRWorkflowComponent from "./FIRWorkflowComponent";
-import FIRForm from "./FIRForm";
 import { useReactToPrint } from "react-to-print";
 
 const columns = [
