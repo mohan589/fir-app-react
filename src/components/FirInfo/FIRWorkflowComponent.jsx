@@ -1,26 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, message, Steps, theme } from 'antd';
-const steps = [
-  {
-    title: 'First',
-    content: 'First-content',
-  },
-  {
-    title: 'Second',
-    content: 'Second-content',
-  },
-  {
-    title: 'Last',
-    content: 'Last-content',
-  },
-  {
-    title: 'Report',
-    content: 'Last-content',
-  },
-];
+
+import { FIR_FORM } from './../../utils/constants'
+import FIRForm from './FIRForm';
+
 const FIRWorkflowComponent = ({ workFlowData }) => {
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
+
+  const renderFirstStepComponents = () => {
+    if (workFlowData[0] === FIR_FORM) {
+      return <FIRForm />
+    }
+  }
+
+  const steps = [
+    {
+      title: 'First',
+      content: renderFirstStepComponents(),
+    },
+    {
+      title: 'Second',
+      content: 'Second-content',
+    },
+    {
+      title: 'Last',
+      content: 'Last-content',
+    },
+    {
+      title: 'Report',
+      content: 'Last-content',
+    },
+  ];
+
   const next = () => {
     setCurrent(current + 1);
   };
@@ -28,12 +40,11 @@ const FIRWorkflowComponent = ({ workFlowData }) => {
     setCurrent(current - 1);
   };
 
-  console.log(workFlowData, 'workFlowData');
-
   const items = workFlowData.map((item) => ({
     key: item,
     title: item,
   }));
+
   const contentStyle = {
     lineHeight: '260px',
     textAlign: 'center',
@@ -43,6 +54,7 @@ const FIRWorkflowComponent = ({ workFlowData }) => {
     border: `1px dashed ${token.colorBorder}`,
     marginTop: 16,
   };
+
   return (
     <>
       <Steps current={current} items={items} />

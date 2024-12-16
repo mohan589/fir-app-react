@@ -149,14 +149,6 @@ const TabContent = ({ tabKey }) => {
         ) : (
           <p>Loading form...</p> // Placeholder while form loads
         )} */}
-        {workFlowData.length === 0 && (
-          <Table
-            columns={columns}
-            dataSource={data}
-            onChange={onChange}
-            pagination={{ pageSize: 5 }}
-          />
-        )}
         <FIRModelPopup
           setOpen={setIsModalOpen}
           open={isModalOpen}
