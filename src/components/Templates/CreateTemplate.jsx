@@ -75,11 +75,14 @@ const CreateTemplate = ({ existingTemplateData }) => {
     }
 
     console.log("Template Saved:", { templateName, fields });
-    openNotification('topLeft');
+    const tempCollection = JSON.parse(localStorage.getItem('templatesInfo')) || [];
+    tempCollection.push({ templateName: templateName, values: fields.map((item) => item.value), key: (Math.random() + 1).toString(36).substring(7) });
+    localStorage.setItem('templatesInfo', JSON.stringify(tempCollection));
+    openNotification('topRight');
   };
 
   return (
-    <div style={{ padding: "24px", maxWidth: "800px", margin: "auto" }}>
+    <div style={{ maxWidth: "800px", margin: "auto" }}>
       <Context.Provider value={contextValue}>
         {contextHolder} {/* Ensure the notification context holder is rendered */}
         <Card title="Create Template" bordered={false} style={{ backgroundColor: "#f9fafb" }}>

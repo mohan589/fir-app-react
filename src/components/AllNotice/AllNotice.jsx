@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Tabs, Button, Table, Card } from "antd";
 import FIRModelPopup from "../FirInfo/FIRModelPopup";
 import FIRWorkflowComponent from "../FirInfo/FIRWorkflowComponent";
-import FIRForm from "../FirInfo/FIRForm";
+import TextExtract from "./TextExtract";
 
 const columns = [
   {
@@ -85,7 +85,7 @@ const TabContent = ({ tabKey }) => {
         bordered={true}
         style={{ marginTop: 16 }}
       >
-        <FIRForm />
+        <TextExtract />
       </Card>
     );
   }

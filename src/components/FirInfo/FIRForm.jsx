@@ -1,19 +1,42 @@
-import React from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { Form, Input, Select, Button, DatePicker, Row, Col } from "antd";
 import PhysicalFeaturesTable from "./PhysicalFeaturesTable";
 
-const FIRForm = ({innerRef}) => {
+const FIRForm = forwardRef(({ props, innerRef }) => {
   
-  console.log(innerRef, 'innerRef')
+  console.log(innerRef, 'innerRef', props)
   const { Option } = Select;
   const handleFinish = (values) => {
     console.log("Form Values:", values);
   };
 
+  // Define the method to be triggered from the parent
+  const childMethod = async () => {
+    let page = document.getElementById('firFormFromApp');
+    // await html2PDF(page, {
+    //   jsPDF: {
+    //     unit: 'pt',
+    //     format: 'a4',
+    //   },
+    //   imageType: 'image/jpeg',
+    //   output: 'jspdf-generate.pdf'
+    // });
+  };
+
+  // Expose the method to the parent via ref
+  useImperativeHandle(innerRef, () => ({
+    triggerChildMethod: childMethod,
+  }));
+
+  const handlePrint = async () => {
+    let page = document.getElementById('firFormFromApp');
+  }
+
   return (
-    (innerRef) ? (<Form
+    <Form
+      id="firFormFromApp"
+      name="FirForm"
       layout="vertical"
-      ref={innerRef}
       onFinish={handleFinish}
       style={{ maxWidth: "1200px", margin: "auto" }}
     >
@@ -426,9 +449,12 @@ const FIRForm = ({innerRef}) => {
         <Button type="primary" htmlType="submit">
           Submit FIR
         </Button>
+
+        <Button type="primary" onClick={handlePrint} >
+          Prepare FIR
+        </Button>
       </Form.Item>
-    </Form>) : null
-  );
-};
+  </Form>)
+});
 
 export default FIRForm;

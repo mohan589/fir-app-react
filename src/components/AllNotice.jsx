@@ -1,5 +1,5 @@
 import React from 'react';
-import AllNotice from './AllNotice/FirTabs';
+import AllNotice from './AllNotice/AllNotice';
 
 const AllNotices = () => {
   return (

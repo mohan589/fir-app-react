@@ -1,58 +1,55 @@
-import React from "react";
-import { Tabs, Button, Table, Card } from "antd";
+import React, { useEffect } from "react";
+import { Tabs, Button, Table, Card, Space, Popconfirm } from "antd";
 import CreateTemplate from "./CreateTemplate";
 import CreateTemplateType from "./CreateTemplateType";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    sorter: (a, b) => a.name.length - b.name.length,
-    sortDirections: ["descend"],
-  },
-  {
-    title: "Age",
-    dataIndex: "age",
-    sorter: (a, b) => a.age - b.age,
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-  },
-];
-
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
 
 const onChange = (key) => {
   console.log(key);
 };
 
 const TabContent = ({ tabKey }) => {
+  const [templatesData, setTemplatesData] = React.useState([]);
+
+  const handleDelete = (templateName) => {
+    const templatesInfo = JSON.parse(localStorage.getItem("templatesInfo"));
+    const filteredTemplates = templatesInfo.filter((template) => template.templateName !== templateName);
+    localStorage.setItem('templatesInfo', JSON.stringify(filteredTemplates));
+    setTemplatesData(JSON.parse(localStorage.getItem("templatesInfo")));
+  };
+
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "templateName",
+      sorter: (a, b) => a.templateName.length - b.templateName.length,
+      sortDirections: ["descend"],
+    },
+    {
+      title: "Sections",
+      dataIndex: "values",
+      sorter: (a, b) => a.values - b.values,
+    },
+    {
+      title: "Actions",
+      dataIndex: '',
+      key: 'x',
+      render: (_, record) =>
+        templatesData.length >= 1 ? (
+          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.templateName)}>
+            <a>Delete</a>
+          </Popconfirm>
+        ) : null,
+    }
+  ];
+
+  useEffect(() => {
+    // Fetch data from API
+    console.log(JSON.parse(localStorage.getItem("templatesInfo")), 'JSON.parse(localStorage.getItem("templatesInfo"))')
+    if (localStorage.getItem("templatesInfo")) {
+      setTemplatesData(JSON.parse(localStorage.getItem("templatesInfo")));
+    }
+  }, [])
+
   if (tabKey === "Templates") {
     return (
       <Card
@@ -60,12 +57,9 @@ const TabContent = ({ tabKey }) => {
         bordered={true}
         style={{ marginTop: 16 }}
       >
-        <Table
-          columns={columns}
-          dataSource={data}
-          onChange={onChange}
-          pagination={{ pageSize: 5 }}
-        />
+        {
+          templatesData.length > 0 && <Table columns={columns} dataSource={templatesData} onChange={onChange} />
+        }
       </Card>
     );
   }

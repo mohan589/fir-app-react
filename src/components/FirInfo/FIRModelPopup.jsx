@@ -20,8 +20,9 @@ const FIRModelPopup = ({ setOpen, open, setWorkFlowData }) => {
   const fetchTemplates = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('YOUR_API_ENDPOINT_HERE');  // Replace with your API endpoint
-      setTemplates(response.data);  // Assuming the response is an array of templates
+      // const response = await axios.get('YOUR_API_ENDPOINT_HERE');  // Replace with your API endpoint
+      // setTemplates(response.data);  // Assuming the response is an array of templates
+      setTemplates(JSON.parse(localStorage.getItem("templatesInfo")));
       setLoading(false);
     } catch (error) {
       console.error('Error fetching templates:', error);
@@ -31,6 +32,7 @@ const FIRModelPopup = ({ setOpen, open, setWorkFlowData }) => {
 
   // Handle the selection of a template
   const handleTemplateSelect = (value) => {
+    console.log(value, 'value');
     setSelectedTemplate(value); // Set the selected template
   };
 
@@ -43,11 +45,9 @@ const FIRModelPopup = ({ setOpen, open, setWorkFlowData }) => {
         setLoading(false);
         setOpen(false); // Close the modal after the action is completed
       }, 2000);
-      setWorkFlowData([{name: 'UserInfo',
-        description: 'Desc'}, {name: 'Suspect Info',
-          description: 'Desc'}, {name: 'Witness Info',
-            description: 'Desc'}, {name: 'Final Report',
-              description: 'Desc'}]);
+
+      const selectedTemplateData = templates.find((template) => template.templateName === selectedTemplate);
+      setWorkFlowData(selectedTemplateData.values);
     } else {
       alert('Please select a template');  // Show an alert if no template is selected
     }
@@ -79,18 +79,16 @@ const FIRModelPopup = ({ setOpen, open, setWorkFlowData }) => {
             onChange={handleTemplateSelect}
             style={{ width: '100%' }}
             placeholder="Select a template"
-          >
+            >
+              <Option >
+                -
+              </Option>
             {
               templates.map((template) => (
-                <Option key={template.id} value={template.id}>
-                  {template.name} || 'Demo'
+                <Option key={template.key} value={template.templateName}>
+                  {template.templateName}
                 </Option>
               ))
-              }
-            {
-            <Option key={'1'} value={'1'}>
-              Demo
-            </Option>
             }
           </Select>
         )}

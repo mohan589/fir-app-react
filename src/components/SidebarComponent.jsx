@@ -26,13 +26,13 @@ const items = [
     <DesktopOutlined />
   ),
   getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '/user/tom'),
-    getItem('Bill', '/user/bill'),
-    getItem('Alex', '/user/alex'),
+    // getItem('Tom', '/'),
+    // getItem('Bill', '/'),
+    // getItem('Alex', '/'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [
-    getItem('Team 1', '/team/team1'),
-    getItem('Team 2', '/team/team2'),
+    // getItem('Team 1', '/'),
+    // getItem('Team 2', '/'),
   ]),
   getItem('Admin Codes', 'AdminCodes', <CrownOutlined />, [
     getItem(
@@ -45,8 +45,8 @@ const items = [
       '/stations',
       <PieChartOutlined />
     ),
-    getItem('Bill', '/user/bill'),
-    getItem('Alex', '/user/alex'),
+    // getItem('Bill', '/'),
+    // getItem('Alex', '/'),
   ]),
   getItem('Notice Section', 'NoticeSection', <CrownOutlined />, [
     getItem(
@@ -59,8 +59,8 @@ const items = [
       '/xyz',
       <PieChartOutlined />
     ),
-    getItem('Bill', '/user/bill'),
-    getItem('Alex', '/user/alex'),
+    // getItem('Bill', '/'),
+    // getItem('Alex', '/'),
   ]),
   getItem(
     <Link to="/dashboard">Dashboard</Link>,

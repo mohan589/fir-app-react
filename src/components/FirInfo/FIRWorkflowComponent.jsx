@@ -27,9 +27,12 @@ const FIRWorkflowComponent = ({ workFlowData }) => {
   const prev = () => {
     setCurrent(current - 1);
   };
+
+  console.log(workFlowData, 'workFlowData');
+
   const items = workFlowData.map((item) => ({
-    key: item.name,
-    title: item.name,
+    key: item,
+    title: item,
   }));
   const contentStyle = {
     lineHeight: '260px',

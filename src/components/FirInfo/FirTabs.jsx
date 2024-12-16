@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Tabs, Button, Table, Card } from "antd";
 import FIRModelPopup from "./FIRModelPopup";
 import FIRWorkflowComponent from "./FIRWorkflowComponent";
@@ -56,47 +56,119 @@ const onChange = (key) => {
 
 const TabContent = ({ tabKey }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [ workFlowData, setWorkFlowData ] = useState([])
-  const contentRef = useRef(null);
-  const handlePrint = useReactToPrint({ contentRef });
+  const [workFlowData, setWorkFlowData] = useState([]);
+  const contentRef = useRef();
+  const [isFormRendered, setIsFormRendered] = useState(false); // Track form rendering
+
+  useEffect(() => {
+    if (tabKey === "New FIR") {
+      // Delay to simulate form loading, replace with actual condition
+      setTimeout(() => setIsFormRendered(true), 100); 
+
+      localStorage.getItem("FIR Charge Sheet Workflow");
+    }
+  }, [tabKey]);
+
+  const handlePrint = useReactToPrint({
+    contentRef: () => {
+      if (!contentRef.current) {
+        alert("The form is not fully loaded. Please try again.");
+        return null;
+      }
+      return contentRef;
+    },
+  });
+
+  const handlePrepareFIR = () => {
+    console.log("Prepare FIR");
+    if (contentRef.current) {
+      contentRef?.current?.triggerChildMethod();
+    }
+  };
 
   if (tabKey === "All FIRs") {
     return (
       <Card
         title="All FIRs"
-        bordered={true}
+        bordered
         style={{ marginTop: 16 }}
-        extra=<Button onClick={() => setIsModalOpen(true)} type="primary">Create FIR</Button>
+        extra={
+          <Button onClick={() => setIsModalOpen(true)} type="primary">
+            Create FIR
+          </Button>
+        }
       >
-        {
-          workFlowData.length === 0 && <Table
+        {workFlowData.length === 0 && (
+          <Table
             columns={columns}
             dataSource={data}
             onChange={onChange}
             pagination={{ pageSize: 5 }}
           />
-        }
-        <FIRModelPopup setOpen={setIsModalOpen} open={isModalOpen} setWorkFlowData={setWorkFlowData} />
-        {workFlowData?.length > 0 && <FIRWorkflowComponent workFlowData={workFlowData} />}
+        )}
+        <FIRModelPopup
+          setOpen={setIsModalOpen}
+          open={isModalOpen}
+          setWorkFlowData={setWorkFlowData}
+        />
+        {workFlowData?.length > 0 && (
+          <FIRWorkflowComponent workFlowData={workFlowData} />
+        )}
       </Card>
     );
   }
-  if (tabKey === "New FIR") {
+
+  if (tabKey === "Add New FIR") {
     return (
       <Card
         title="Add New FIR"
-        bordered={true}
+        bordered
         style={{ marginTop: 16 }}
-        // extra=<Button onClick={handlePrint} type="primary">Print FIR</Button>
+        extra={
+          <div>
+            <Button onClick={() => setIsModalOpen(true)} type="primary">
+              Select Workflow Template
+            </Button>
+            &nbsp;
+            <Button onClick={handlePrint} disabled={!isFormRendered} type="primary">
+              Print FIR
+            </Button>
+            &nbsp;
+            <Button onClick={handlePrepareFIR} type="primary">
+              Prepare FIR
+            </Button>
+          </div>
+        }
         bodyStyle={{
-          maxHeight: '600px', // Set the max height as per your requirements
-          overflowY: 'auto', // Enable vertical scrolling when content overflows
+          maxHeight: "600px",
+          overflowY: "auto",
         }}
       >
-        <FIRForm innerRef={contentRef}/>
+        {/* {isFormRendered ? (
+          <FIRForm innerRef={contentRef} />
+        ) : (
+          <p>Loading form...</p> // Placeholder while form loads
+        )} */}
+        {workFlowData.length === 0 && (
+          <Table
+            columns={columns}
+            dataSource={data}
+            onChange={onChange}
+            pagination={{ pageSize: 5 }}
+          />
+        )}
+        <FIRModelPopup
+          setOpen={setIsModalOpen}
+          open={isModalOpen}
+          setWorkFlowData={setWorkFlowData}
+        />
+        {workFlowData?.length > 0 && (
+          <FIRWorkflowComponent workFlowData={workFlowData} />
+        )}
       </Card>
     );
   }
+
   return null;
 };
 
@@ -108,9 +180,9 @@ const FirTabs = () => {
       children: <TabContent tabKey="All FIRs" />,
     },
     {
-      key: "New FIR",
-      label: "New FIR",
-      children: <TabContent tabKey="New FIR" />,
+      key: "Add New FIR",
+      label: "Add New FIR",
+      children: <TabContent tabKey="Add New FIR" />,
     }
   ];
 
