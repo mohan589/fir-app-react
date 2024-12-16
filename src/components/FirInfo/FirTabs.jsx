@@ -79,7 +79,6 @@ const TabContent = ({ tabKey }) => {
   });
 
   const handlePrepareFIR = () => {
-    console.log("Prepare FIR");
     if (contentRef.current) {
       contentRef?.current?.triggerChildMethod();
     }
@@ -133,7 +132,7 @@ const TabContent = ({ tabKey }) => {
               Print FIR
             </Button>
             &nbsp;
-            <Button onClick={handlePrepareFIR} type="primary">
+            <Button onClick={handlePrepareFIR} disabled={!isFormRendered} type="primary">
               Prepare FIR
             </Button>
           </div>

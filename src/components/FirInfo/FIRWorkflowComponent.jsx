@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, message, Steps, theme } from 'antd';
 
 import { FIR_FORM } from './../../utils/constants'
@@ -7,10 +7,11 @@ import FIRForm from './FIRForm';
 const FIRWorkflowComponent = ({ workFlowData }) => {
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
+  const firFormRef = useRef();
 
   const renderFirstStepComponents = () => {
     if (workFlowData[0] === FIR_FORM) {
-      return <FIRForm />
+      return <FIRForm firFormRef={firFormRef} />
     }
   }
 
@@ -34,6 +35,11 @@ const FIRWorkflowComponent = ({ workFlowData }) => {
   ];
 
   const next = () => {
+    if (current === 0) {
+      if (firFormRef.current) {
+        firFormRef?.current?.submitForm();
+      }
+    }
     setCurrent(current + 1);
   };
   const prev = () => {
