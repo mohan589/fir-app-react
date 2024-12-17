@@ -5,7 +5,6 @@ const PhysicalFeaturesTable = () => {
   // State for the first table (Physical Features)
   const [physicalData, setPhysicalData] = useState([
     { key: '1', sno: '1', sex: '2', dob: '3', build: '4', height: '5', complexion: '6', idMarks: '7' },
-    { key: '1', sno: '1', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
     { key: '2', sno: '2', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
     { key: '3', sno: '3', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
     { key: '4', sno: '4', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
@@ -14,15 +13,15 @@ const PhysicalFeaturesTable = () => {
 
   // State for the second table (Deformities Peculiarities)
   const [peculiaritiesData, setPeculiaritiesData] = useState([
-    { key: '1', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
+    { key: '1', deformities: '8', teeth: '9', hair: '10', eyes: '11', habits: '12', dressHabit: '13', languages: '14' },
     { key: '2', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
     { key: '3', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
     { key: '4', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
-    { key: '5', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' }
   ]);
 
   // State for the third table (Place of Offense)
   const [offenseData, setOffenseData] = useState([
+    { key: '1', burnMark: '15', leucoderma: '16', mole: '17', scar: '18', tattoo: '19' },
     { key: '1', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
     { key: '2', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
     { key: '3', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
@@ -124,30 +123,36 @@ const PhysicalFeaturesTable = () => {
     // },
   ];
 
-  // Merge columns for all tables
-  const mergedPhysicalColumns = physicalColumns.map(col => ({
+  const mergedPhysicalColumns = physicalColumns.map((col) => ({
     ...col,
-    onCell: record => ({
-      editable: col.editable,
+    onCell: (record) => ({
+      editable: record.key !== '1' && col.editable, // Make first row non-editable
       table: 'physical',
+      column: col.dataIndex,
+      record,
     }),
   }));
-
-  const mergedPeculiaritiesColumns = peculiaritiesColumns.map(col => ({
+  
+  const mergedPeculiaritiesColumns = peculiaritiesColumns.map((col) => ({
     ...col,
-    onCell: record => ({
-      editable: col.editable,
+    onCell: (record) => ({
+      editable: record.key !== '1' && col.editable, // Make first row non-editable
       table: 'peculiarities',
+      column: col.dataIndex,
+      record,
     }),
   }));
-
-  const mergedOffenseColumns = offenseColumns.map(col => ({
+  
+  const mergedOffenseColumns = offenseColumns.map((col) => ({
     ...col,
-    onCell: record => ({
-      editable: col.editable,
+    onCell: (record) => ({
+      editable: record.key !== '1' && col.editable, // Make first row non-editable
       table: 'offense',
+      column: col.dataIndex,
+      record,
     }),
   }));
+  
 
   return (
     <div>
