@@ -3,6 +3,7 @@ import { Tabs, Button, Table, Card } from "antd";
 import FIRModelPopup from "../FirInfo/FIRModelPopup";
 import FIRWorkflowComponent from "../FirInfo/FIRWorkflowComponent";
 import TextExtract from "./TextExtract";
+import Notice35App from "./Notice35";
 
 const columns = [
   {
@@ -108,7 +109,8 @@ const AllNotice = () => {
 
   return (
     <div style={{ padding: "24px", background: "#f0f2f5" }}>
-      <Tabs items={tabItems}/>
+      <Tabs items={tabItems} />
+      <Notice35App/>
     </div>
   );
 };

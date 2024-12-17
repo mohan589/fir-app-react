@@ -17,12 +17,12 @@ const PhysicalFeaturesTable = () => {
     { key: '2', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
     { key: '3', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
     { key: '4', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
+    { key: '5', deformities: '', teeth: '', hair: '', eyes: '', habits: '', dressHabit: '', languages: '' },
   ]);
 
   // State for the third table (Place of Offense)
   const [offenseData, setOffenseData] = useState([
     { key: '1', burnMark: '15', leucoderma: '16', mole: '17', scar: '18', tattoo: '19' },
-    { key: '1', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
     { key: '2', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
     { key: '3', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
     { key: '4', burnMark: '', leucoderma: '', mole: '', scar: '', tattoo: '' },
