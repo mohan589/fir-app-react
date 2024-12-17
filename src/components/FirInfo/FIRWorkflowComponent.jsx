@@ -7,12 +7,16 @@ import FIRForm from './FIRForm';
 const FIRWorkflowComponent = ({ workFlowData }) => {
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
-  const firFormRef = useRef();
+  const firFormRef = useRef(null);
 
   const renderFirstStepComponents = () => {
     if (workFlowData[0] === FIR_FORM) {
-      return <FIRForm firFormRef={firFormRef} />
+      return <FIRForm firFormRef={firFormRef} currentWorkflow={currentWorkflow} />
     }
+  }
+
+  const currentWorkflow = (current) => {
+    setCurrent(current)
   }
 
   const steps = [
@@ -42,6 +46,7 @@ const FIRWorkflowComponent = ({ workFlowData }) => {
     }
     setCurrent(current + 1);
   };
+
   const prev = () => {
     setCurrent(current - 1);
   };

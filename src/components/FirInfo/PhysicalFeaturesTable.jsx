@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Table, Input, Button, Popconfirm } from 'antd';
+import { Table, Input } from 'antd';
 
 const PhysicalFeaturesTable = () => {
   // State for the first table (Physical Features)
   const [physicalData, setPhysicalData] = useState([
-    { key: '1', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
-    { key: '2', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
-    { key: '3', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
-    { key: '4', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
-    { key: '5', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' }
+    { key: '1', sno: '1', sex: '2', dob: '3', build: '4', height: '5', complexion: '6', idMarks: '7' },
+    { key: '1', sno: '1', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
+    { key: '2', sno: '2', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
+    { key: '3', sno: '3', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
+    { key: '4', sno: '4', sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' },
+    { key: '5', sno: '5',sex: '', dob: '', build: '', height: '', complexion: '', idMarks: '' }
   ]);
 
   // State for the second table (Deformities Peculiarities)
@@ -67,21 +68,22 @@ const PhysicalFeaturesTable = () => {
 
   // Columns for the first table (Physical Features)
   const physicalColumns = [
+    { title: 'S.NO.', dataIndex: 'sno', editable: false },
     { title: 'Sex', dataIndex: 'sex', editable: true },
     { title: 'Date/Year of Birth', dataIndex: 'dob', editable: true },
     { title: 'Build', dataIndex: 'build', editable: true },
     { title: 'Height (cms)', dataIndex: 'height', editable: true },
     { title: 'Complexion', dataIndex: 'complexion', editable: true },
-    { title: 'Identification Marks', dataIndex: 'idMarks', editable: true },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      render: (_, record) => (
-        <Popconfirm title="Are you sure you want to save?" onConfirm={() => handleSave('physical', record.key)}>
-          <Button>Save</Button>
-        </Popconfirm>
-      ),
-    },
+    { title: 'Identification Marks(s)', dataIndex: 'idMarks', editable: true },
+    // {
+    //   title: 'Action',
+    //   dataIndex: 'action',
+    //   render: (_, record) => (
+    //     <Popconfirm title="Are you sure you want to save?" onConfirm={() => handleSave('physical', record.key)}>
+    //       <Button>Save</Button>
+    //     </Popconfirm>
+    //   ),
+    // },
   ];
 
   // Columns for the second table (Deformities Peculiarities)
@@ -93,15 +95,15 @@ const PhysicalFeaturesTable = () => {
     { title: 'Habits', dataIndex: 'habits', editable: true },
     { title: 'Dress Habit(s)', dataIndex: 'dressHabit', editable: true },
     { title: 'Languages/Dialect', dataIndex: 'languages', editable: true },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      render: (_, record) => (
-        <Popconfirm title="Are you sure you want to save?" onConfirm={() => handleSave('peculiarities', record.key)}>
-          <Button>Save</Button>
-        </Popconfirm>
-      ),
-    },
+    // {
+    //   title: 'Action',
+    //   dataIndex: 'action',
+    //   render: (_, record) => (
+    //     <Popconfirm title="Are you sure you want to save?" onConfirm={() => handleSave('peculiarities', record.key)}>
+    //       <Button>Save</Button>
+    //     </Popconfirm>
+    //   ),
+    // },
   ];
 
   // Columns for the third table (Place of Offense)
@@ -111,15 +113,15 @@ const PhysicalFeaturesTable = () => {
     { title: 'Mole', dataIndex: 'mole', editable: true },
     { title: 'Scar', dataIndex: 'scar', editable: true },
     { title: 'Tattoo', dataIndex: 'tattoo', editable: true },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      render: (_, record) => (
-        <Popconfirm title="Are you sure you want to save?" onConfirm={() => handleSave('offense', record.key)}>
-          <Button>Save</Button>
-        </Popconfirm>
-      ),
-    },
+    // {
+    //   title: 'Action',
+    //   dataIndex: 'action',
+    //   render: (_, record) => (
+    //     <Popconfirm title="Are you sure you want to save?" onConfirm={() => handleSave('offense', record.key)}>
+    //       <Button>Save</Button>
+    //     </Popconfirm>
+    //   ),
+    // },
   ];
 
   // Merge columns for all tables

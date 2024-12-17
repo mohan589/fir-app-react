@@ -80,7 +80,7 @@ const FIRModelPopup = ({ setOpen, open, setWorkFlowData }) => {
             style={{ width: '100%' }}
             placeholder="Select a template"
             >
-              <Option >
+              <Option key='-' value='-'>
                 -
               </Option>
             {

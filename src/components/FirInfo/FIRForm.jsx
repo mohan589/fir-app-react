@@ -1,10 +1,19 @@
-import React, { forwardRef, useImperativeHandle } from "react";
-import { Form, Input, Select, Button, DatePicker, Row, Col } from "antd";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import { Form, Input, Select, Button, DatePicker, Row, Col, notification } from "antd";
 import PhysicalFeaturesTable from "./PhysicalFeaturesTable";
 
-const FIRForm = forwardRef(({ props, firFormRef }) => {
+const FIRForm = forwardRef(({ props, firFormRef, currentWorkflow }) => {
   const [form] = Form.useForm();
   const { Option } = Select;
+  const [api] = notification.useNotification();
+
+  const openNotification = (message, description) => {
+    api.info({
+      message,
+      description,
+    });
+  };
 
   const handleFinish = (values) => {
     console.log("Form Values:", values);
@@ -13,18 +22,32 @@ const FIRForm = forwardRef(({ props, firFormRef }) => {
   // Expose the method to the parent via ref
   useImperativeHandle(firFormRef, () => ({
     submitForm: () => {
-      form.submit(); // Triggers the onFinish handler
-    },
+      form
+        .validateFields()
+        .then((values) => {
+          console.log('Form Values:', values);
+        })
+        .catch((errorInfo) => {
+          currentWorkflow(0);
+          api.error({ message: "Form Required Fields Error", description: `Fill the required Data` });
+          console.error('Validation Failed:', errorInfo);
+        });
+    }
   }));
+
+  // Handle failed submission
+  const onFinishFailed = (errorInfo) => {
+    console.log('Validation Failed:', errorInfo);
+  };
 
   return (
     <Form
-      ref={firFormRef}
       form={form}
       id="firFormFromApp"
       name="FirForm"
       layout="vertical"
       onFinish={handleFinish}
+      onFinishFailed={onFinishFailed}
       style={{ maxWidth: "1200px", margin: "auto" }}
     >
       <h2>First Information Report (FIR)</h2>
@@ -32,7 +55,7 @@ const FIRForm = forwardRef(({ props, firFormRef }) => {
       {/* Section 1: General Information */}
       <Row gutter={16}>
         <Col span={8}>
-          <Form.Item label="District" name="district" rules={[{ required: true }]}>
+          <Form.Item label="District" name="district" rules={[{ required: true, message: 'Please input District Name!' }]}>
             <Input placeholder="Enter district" />
           </Form.Item>
         </Col>
