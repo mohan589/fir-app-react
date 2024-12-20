@@ -4,7 +4,7 @@ import { Upload, Card, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
 const UploadAndViewDoc = () => {
-  const [docs, setDocs] = useState([{ uri: require('/Users/mpichikala/personal/fir-app-react/src/components/AllNotice/Charge Sheet.docx') }]);
+  const [docs, setDocs] = useState([{ uri: require('/Users/mpichikala/personal/fir-app-react/src/components/AllCirculars/Charge Sheet.docx') }]);
 
   // Handle file upload
   const handleFileUpload = (file) => {
@@ -19,7 +19,7 @@ const UploadAndViewDoc = () => {
     }
 
     const fileURL = URL.createObjectURL(file);
-    setDocs([{ uri: require('/Users/mpichikala/personal/fir-app-react/src/components/AllNotice/Charge Sheet.docx') }]); // Update the docs state with the uploaded file URL
+    setDocs([{ uri: require('/Users/mpichikala/personal/fir-app-react/src/components/AllCirculars/Charge Sheet.docx') }]); // Update the docs state with the uploaded file URL
     return false; // Prevent Ant Design from auto-uploading
   };
 

@@ -7,7 +7,7 @@ import Templates from './components/Templates/Templates';
 import FirInfo from './components/FirInfo';
 import DistrictComponent from "./components/AdminCodes/District/DistrictComponent";
 import StationComponent from "./components/AdminCodes/Station/StationComponent";
-import AllNotices from "./components/AllNotice";
+import CircularTabs from "./components/AllCirculars/CircularTabs";
 
 const RouterComponent = () => {
   return (
@@ -18,7 +18,7 @@ const RouterComponent = () => {
       <Route path="/about" element={<About />} />
       <Route path="/districts" element={<DistrictComponent />} />
       <Route path="/stations" element={<StationComponent />} />
-      <Route path="/allNotices" element={<AllNotices />} />
+      <Route path="/allCirculars" element={<CircularTabs />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

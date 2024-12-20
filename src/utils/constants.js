@@ -21,8 +21,13 @@ const RichTextEditorPlugins = {
   TABFOCUS: 'tabfocus'
 }
 
+const editorFontSizeFormats = '8px 10px 12px 14px 18px 24px 36px';
+
+const TAG_COLORS = ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'];
 
 export {
   FIR_FORM,
-  RichTextEditorPlugins
+  RichTextEditorPlugins,
+  editorFontSizeFormats,
+  TAG_COLORS
 }

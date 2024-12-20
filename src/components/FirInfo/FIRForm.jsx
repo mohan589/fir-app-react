@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { Form, Input, Select, Button, DatePicker, Row, Col, notification } from "antd";
 import PhysicalFeaturesTable from "./PhysicalFeaturesTable";
 

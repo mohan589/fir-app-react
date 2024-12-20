@@ -50,8 +50,8 @@ const items = [
   ]),
   getItem('Notice Section', 'NoticeSection', <CrownOutlined />, [
     getItem(
-      <Link to="/allNotices">All Notices</Link>,
-      '/allNotices',
+      <Link to="/allCirculars">All Circulars</Link>,
+      '/allCirculars',
       <PieChartOutlined />
     ),
     getItem(
