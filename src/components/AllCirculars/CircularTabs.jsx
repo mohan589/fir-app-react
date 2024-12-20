@@ -1,6 +1,5 @@
 import { Tabs } from "antd";
 import ListCirculars from "./ListCirculars";
-import ImageToPDF from "./ImageToPDF";
 
 const CircularTabs = () => {
   const tabItems = [
@@ -19,8 +18,6 @@ const CircularTabs = () => {
   return (
     <div style={{ padding: "24px", background: "#f0f2f5" }}>
       <Tabs items={tabItems} />
-      {/* <Notice35App/> */}
-      <ImageToPDF/>
     </div>
   );
 };
