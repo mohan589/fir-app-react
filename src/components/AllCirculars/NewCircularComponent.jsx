@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Space } from "antd";
+import { encode } from 'js-base64';
+
+
 import RichTextEditor from "../CustomComponents/RichTextEditor";
 import CustomTagsComponent from "../CustomComponents/CustomTagsComponent";
 
@@ -36,18 +39,19 @@ const NewCircularComponent = () => {
   // Replace variables (placeholders like {{name}}, {{tag}}) in the editor content
   const handleSave = () => {
     let content = formData.description;
-
     // Replace {{name}} with the actual name
-    content = content.replace(/{{name}}/g, formData.name);
+    // content = content.replace(/{{name}}/g, formData.name);
     // Replace {{date}} with the current date
-    content = content.replace(/{{date}}/g, new Date().toLocaleDateString());
+    // content = content.replace(/{{date}}/g, new Date().toLocaleDateString());
 
     // Replace tags with their respective placeholders (e.g., {{tag1}}, {{tag2}})
     formData.tags.forEach((tag, index) => {
       content = content.replace(new RegExp(`{{tag${index + 1}}}`, 'g'), tag);
     });
 
-    console.log("Saved content:", formData); // You can save this content or send it to an API
+    const formattedData = { ...formData, description: encode(formData.description) };
+
+    console.log("Saved content:", formattedData); // You can save this content or send it to an API
   };
 
   const handleCancel = () => {
