@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Tabs, Button, Table, Card } from "antd";
-import FIRModelPopup from "../FirInfo/FIRModelPopup";
 import FIRWorkflowComponent from "../FirInfo/FIRWorkflowComponent";
 import TextExtract from "./TextExtract";
 import Notice35App from "./Notice35";
+import ImageToPDF from "./ImageToPDF";
+import NewNoticeModelPopup from "./NewNoticeModelPopup";
 
 const columns = [
   {
@@ -13,39 +14,35 @@ const columns = [
     sortDirections: ["descend"],
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    sorter: (a, b) => a.age - b.age,
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-  },
+    title: "Sections",
+    dataIndex: "sections",
+    sorter: (a, b) => a.sections - b.sections,
+  }
 ];
 
 const data = [
   {
     key: "1",
     name: "John Brown",
-    age: 32,
+    sections: 32,
     address: "New York No. 1 Lake Park",
   },
   {
     key: "2",
     name: "Jim Green",
-    age: 42,
+    sections: 42,
     address: "London No. 1 Lake Park",
   },
   {
     key: "3",
     name: "Joe Black",
-    age: 32,
+    sections: 32,
     address: "Sydney No. 1 Lake Park",
   },
   {
     key: "4",
     name: "Jim Red",
-    age: 32,
+    sections: 32,
     address: "London No. 2 Lake Park",
   },
 ];
@@ -58,13 +55,13 @@ const TabContent = ({ tabKey }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [ workFlowData, setWorkFlowData ] = useState([])
 
-  if (tabKey === "All FIRs") {
+  if (tabKey === "All Notices") {
     return (
       <Card
-        title="All FIRs"
+        title="All Notices"
         bordered={true}
         style={{ marginTop: 16 }}
-        extra=<Button onClick={() => setIsModalOpen(true)} type="primary">Create FIR</Button>
+        extra=<Button onClick={() => setIsModalOpen(true)} type="primary">Add New Notice</Button>
       >
         {
           workFlowData.length === 0 && <Table
@@ -74,15 +71,15 @@ const TabContent = ({ tabKey }) => {
             pagination={{ pageSize: 5 }}
           />
         }
-        <FIRModelPopup setOpen={setIsModalOpen} open={isModalOpen} setWorkFlowData={setWorkFlowData} />
+        <NewNoticeModelPopup setOpen={setIsModalOpen} open={isModalOpen} setWorkFlowData={setWorkFlowData} />
         {workFlowData?.length > 0 && <FIRWorkflowComponent workFlowData={workFlowData} />}
       </Card>
     );
   }
-  if (tabKey === "New FIR") {
+  if (tabKey === "Add Notice") {
     return (
       <Card
-        title="Add New FIR"
+        title="Add Add Notice"
         bordered={true}
         style={{ marginTop: 16 }}
       >
@@ -96,21 +93,22 @@ const TabContent = ({ tabKey }) => {
 const AllNotice = () => {
   const tabItems = [
     {
-      key: "All FIRs",
-      label: "All FIRs",
-      children: <TabContent tabKey="All FIRs" />,
+      key: "All Notices",
+      label: "All Notices",
+      children: <TabContent tabKey="All Notices" />,
     },
     {
-      key: "New FIR",
-      label: "New FIR",
-      children: <TabContent tabKey="New FIR" />,
+      key: "Add Notice",
+      label: "Add Notice",
+      children: <TabContent tabKey="Add Notice" />,
     }
   ];
 
   return (
     <div style={{ padding: "24px", background: "#f0f2f5" }}>
       <Tabs items={tabItems} />
-      <Notice35App/>
+      {/* <Notice35App/> */}
+      <ImageToPDF/>
     </div>
   );
 };

@@ -44,7 +44,7 @@ const FIRModelPopup = ({ setOpen, open, setWorkFlowData }) => {
       setTimeout(() => {
         setLoading(false);
         setOpen(false); // Close the modal after the action is completed
-      }, 2000);
+      }, 1000);
 
       const selectedTemplateData = templates.find((template) => template.templateName === selectedTemplate);
       setWorkFlowData(selectedTemplateData.values);

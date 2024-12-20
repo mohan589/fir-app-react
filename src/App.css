@@ -51,3 +51,7 @@
   right: 10px;
   z-index: 1000;
 }
+
+.ql-editor {
+  height: 300px !important;
+}

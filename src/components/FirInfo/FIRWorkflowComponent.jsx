@@ -15,6 +15,10 @@ const FIRWorkflowComponent = ({ workFlowData }) => {
     }
   }
 
+  const renderSecondStepComponents = () => {
+    // return <SecondStepComponent />
+  }
+
   const currentWorkflow = (current) => {
     setCurrent(current)
   }

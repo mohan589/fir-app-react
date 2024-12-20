@@ -5,6 +5,7 @@ import { Viewer, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import UploadAndViewDoc from './UploadAndViewDoc';
 
 const Notice35 = () => {
   const [fileUrl, setFileUrl] = useState(null); // State for the PDF URL
@@ -27,7 +28,6 @@ const Notice35 = () => {
   };
 
   return (
-    <div style={{ padding: 20 }}>
       <Card title="PDF Viewer with Upload" bordered style={{ width: '100%' }}>
         {/* File Upload */}
         <Upload
@@ -49,8 +49,8 @@ const Notice35 = () => {
             </Worker>
           </div>
         )}
+      {/* <UploadAndViewDoc/> */}
       </Card>
-    </div>
   );
 };
 

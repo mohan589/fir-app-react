@@ -84,7 +84,6 @@ const FIRForm = forwardRef(({ props, firFormRef, currentWorkflow }) => {
         </Col>
       </Row>
 
-      {/* Section 2: Occurrence Details */}
       <Row gutter={16}>
         <Col span={8}>
           <Form.Item
